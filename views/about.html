@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-white text-2xl font-bold">
+          <a href="/">Lego Collection</a>
+        </h1>
+        <ul class="flex space-x-4">
+          <li><a href="/" class="text-white">Home</a></li>
+          <li><a href="/about" class="text-white active">About</a></li>
+          <li class="relative">
+            <span class="text-white cursor-pointer">Theme</span>
+            <ul
+              class="absolute hidden bg-gray-800 p-2 mt-2"
+              id="themeDropdown"
+            ></ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mx-auto mt-8">
+      <div class="hero p-8 bg-white-200 mb-8">
+        <h2 class="text-3xl font-bold">About</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <img
+            src="https://i.ytimg.com/vi/tLfWnk4V9NA/maxresdefault.jpg"
+            alt="Your Image"
+            class="w-full"
+          />
+        </div>
+        <div>
+          <p class="text-lg font-semibold mb-4">About Me</p>
+          <p>
+            My name is Jun Ho Jeon but my friends call me JJ, I am a student of
+            Seneca-College in the program CPA Computer Programming and Analysis.
+            I like playing baseketball, reading books and singing.
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeDropdown = document.getElementById("themeDropdown");
+        const themeButton = document.querySelector(".relative");
+
+        themeButton.addEventListener("click", function () {
+          themeDropdown.classList.toggle("hidden");
+        });
+
+        const themes = ["Classic", "Jungle", "Dimension"];
+        const themeList = themes
+          .map(
+            (theme) =>
+              `<li><a href="/lego/sets?theme=${theme}" class="text-white">${theme}</a></li>`
+          )
+          .join("");
+        themeDropdown.innerHTML = themeList;
+      });
+    </script>
+  </body>
+</html>

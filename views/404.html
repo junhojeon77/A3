@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 Not Found - Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-white text-2xl font-bold">
+          <a href="/">Lego Collection</a>
+        </h1>
+        <ul class="flex space-x-4">
+          <li><a href="/" class="text-white">Home</a></li>
+          <li><a href="/about" class="text-white">About</a></li>
+          <li class="relative">
+            <span class="text-white cursor-pointer">Theme</span>
+            <ul class="absolute hidden bg-gray-800 p-2 mt-2">
+              <li>
+                <a href="/lego/sets?theme=theme1" class="text-white">Theme 1</a>
+              </li>
+              <li>
+                <a href="/lego/sets?theme=theme2" class="text-white">Theme 2</a>
+              </li>
+              <li>
+                <a href="/lego/sets?theme=theme3" class="text-white">Theme 3</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mx-auto mt-8">
+      <div class="hero p-8 bg-red-200 mb-8">
+        <h2 class="text-3xl font-bold">404 Not Found</h2>
+        <p class="text-lg">
+          Invalid address. The page you're looking for doesn't exist.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

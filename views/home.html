@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@^3.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="bg-gray-800 p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-white text-2xl font-bold">
+          <a href="/">Lego Collection</a>
+        </h1>
+        <ul class="flex space-x-4">
+          <li><a href="/" class="text-white active">Home</a></li>
+          <li><a href="/about" class="text-white">About</a></li>
+          <li class="relative">
+            <span class="text-white cursor-pointer">Theme</span>
+            <ul
+              class="absolute hidden bg-gray-800 p-2 mt-2"
+              id="themeDropdown"
+            ></ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mx-auto mt-8">
+      <div class="hero p-8 bg-white-200 mb-8">
+        <h2 class="text-3xl font-bold mb-4">Explore our Lego Collection</h2>
+      </div>
+      <div class="text-center mb-8">
+        <a href="/lego/sets" class="btn btn-lg">View all sets</a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="card p-4 border border-gray-300 rounded-md">
+          <img
+            src="https://cdn.rebrickable.com/media/sets/044-2.jpg"
+            alt="Lego Set 044-2"
+            class="w-full mb-4"
+          />
+          <h3 class="text-lg font-semibold mb-2">Jumbo Bricks</h3>
+          <p class="text-white-700 mb-2">
+            This lego set is all about giving kids different kinds of lego to
+            use so called Jumbo!
+          </p>
+          <a href="/lego/sets/044-2" class="btn">View Set</a>
+        </div>
+        <div class="card p-4 border border-gray-300 rounded-md">
+          <img
+            src="https://cdn.rebrickable.com/media/sets/045-1.jpg"
+            alt="Lego Set 045-1"
+            class="w-full mb-4"
+          />
+          <h3 class="text-lg font-semibold mb-2">Farm</h3>
+          <p class="text-white-700 mb-2">
+            This Lego set is of a Farm made in 1979 to show kids how farm
+            looked.
+          </p>
+          <a href="/lego/sets/045-1" class="btn">View Set</a>
+        </div>
+        <div class="card p-4 border border-gray-300 rounded-md">
+          <img
+            src="https://cdn.rebrickable.com/media/sets/05-1.jpg"
+            alt="Lego Set 05-1"
+            class="w-full mb-4"
+          />
+          <h3 class="text-lg font-semibold mb-2">Hinges</h3>
+          <p class="text-white-700 mb-2">
+            The Hinges Set made in 1980 also priced at $1.20 for kids to
+            engineer doors
+          </p>
+          <a href="/lego/sets/05-1" class="btn">View Set</a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const themeDropdown = document.getElementById("themeDropdown");
+        const themeButton = document.querySelector(".relative");
+
+        themeButton.addEventListener("click", function () {
+          themeDropdown.classList.toggle("hidden");
+        });
+
+        const themes = ["Classic", "Jungle", "Dimension"];
+        const themeList = themes
+          .map(
+            (theme) =>
+              `<li><a href="/lego/sets?theme=${theme}" class="text-white">${theme}</a></li>`
+          )
+          .join("");
+        themeDropdown.innerHTML = themeList;
+      });
+    </script>
+  </body>
+</html>
