@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found - Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <%- include('partials/navbar', {page: ''}) %>
+
+    <div class="container mx-auto mt-8">
+        <div class="hero p-8 bg-red-200 mb-8">
+            <h2 class="text-3xl font-bold">404 Not Found</h2>
+        </div>
+        <p class="text-lg text-center">Route Error: Unable to find what you're looking for</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeDropdown = document.getElementById('themeDropdown');
+            const themeButton = document.querySelector('.relative');
+
+            themeButton.addEventListener('click', function () {
+                themeDropdown.classList.toggle('hidden');
+            });
+
+            const themes = ["Classic", "Jungle", "Dimension"]; 
+            const themeList = themes.map(theme => `<li><a href="/lego/sets?theme=${theme}" class="text-white">${theme}</a></li>`).join('');
+            themeDropdown.innerHTML = themeList;
+        });
+    </script>
+</body>
+</html>

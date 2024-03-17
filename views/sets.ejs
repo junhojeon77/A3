@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sets - Lego Collection</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin-top: 1rem;
+            background-color: #6e6b76;
+            border: 1px solid #616162;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #616162;
+            text-align: left;
+        }
+
+        .table th {
+            background-color: #616162;
+            font-weight: 600;
+            color: #69696a;
+            text-transform: uppercase;
+        }
+
+        .table tbody tr:hover {
+            background-color: #888888;
+        }
+    </style>
+</head>
+<body>
+    <%- include('partials/navbar', {page: ''}) %>
+
+    <div class="container mx-auto mt-8">
+        <div class="hero p-8 bg-gray-200 mb-8">
+            <h2 class="text-3xl font-bold mb-4">Collection</h2>
+        </div>
+        <div class="text-center mb-8">
+            <a href="/lego/sets?theme=Supplemental" class="btn btn-primary mr-4">Supplemental</a>
+            <a href="/lego/sets?theme=Technic" class="btn btn-primary mr-4">Technic</a>
+            <a href="/lego/sets?theme=Creator" class="btn btn-primary">Creator</a>
+        </div>   
+    </div>
+    
+    <div class="container mx-auto">
+        <table class="table mx-auto">
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Theme</th>
+                    <th class="text-center">Year</th>
+                    <th class="text-center">Parts</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% sets.forEach(set => { %>
+                    <tr>
+                        <td><img src="<%= set.img_url %>" alt="<%= set.name %>" width="50"></td>
+                        <td><%= set.name %></td>
+                        <td><a href="/lego/sets?theme=<%= set.theme %>" class="btn btn-primary"><%= set.theme %></a></td>
+                        <td class="text-center"><%= set.year %></td>
+                        <td class="text-center"><%= set.num_parts %></td>
+                        <td><a href="/lego/sets/<%= set.set_num %>" class="btn btn-primary">Details</a></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeDropdown = document.getElementById('themeDropdown');
+            const themeButton = document.querySelector('.relative');
+
+            themeButton.addEventListener('click', function () {
+                themeDropdown.classList.toggle('hidden');
+            });
+
+            const themes = ["Classic", "Jungle", "Dimension"];
+            const themeList = themes.map(theme => `<li><a href="/lego/sets?theme=${theme}" class="text-white">${theme}</a></li>`).join('');
+            themeDropdown.innerHTML = themeList;
+        });
+    </script>
+</body>
+</html>

@@ -11,24 +11,8 @@
     />
   </head>
   <body>
-    <nav class="bg-gray-800 p-4">
-      <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-white text-2xl font-bold">
-          <a href="/">Lego Collection</a>
-        </h1>
-        <ul class="flex space-x-4">
-          <li><a href="/" class="text-white active">Home</a></li>
-          <li><a href="/about" class="text-white">About</a></li>
-          <li class="relative">
-            <span class="text-white cursor-pointer">Theme</span>
-            <ul
-              class="absolute hidden bg-gray-800 p-2 mt-2"
-              id="themeDropdown"
-            ></ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
+
+    <%- include('partials/navbar') %>
 
     <div class="container mx-auto mt-8">
       <div class="hero p-8 bg-white-200 mb-8">
@@ -82,23 +66,22 @@
     </div>
 
     <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        const themeDropdown = document.getElementById("themeDropdown");
-        const themeButton = document.querySelector(".relative");
-
-        themeButton.addEventListener("click", function () {
-          themeDropdown.classList.toggle("hidden");
-        });
-
-        const themes = ["Classic", "Jungle", "Dimension"];
-        const themeList = themes
-          .map(
-            (theme) =>
-              `<li><a href="/lego/sets?theme=${theme}" class="text-white">${theme}</a></li>`
-          )
-          .join("");
-        themeDropdown.innerHTML = themeList;
+      document.addEventListener('DOMContentLoaded', function () {
+          const themeDropdown = document.getElementById('themeDropdown');
+          const themeButton = document.querySelector('.relative');
+  
+          themeButton.addEventListener('click', function () {
+              themeDropdown.classList.toggle('hidden');
+          });
+  
+          const currentPage = window.location.pathname; 
+          const themes = ["Classic", "Jungle", "Dimension"]; 
+          const themeList = themes.map(theme => {
+              const isActive = currentPage.includes('/lego/sets') && currentPage.includes(`theme=${theme}`);
+              return `<li><a href="/lego/sets?theme=${theme}" class="text-white ${isActive ? 'active' : ''}">${theme}</a></li>`;
+          }).join('');
+          themeDropdown.innerHTML = themeList;
       });
-    </script>
+  </script>  
   </body>
 </html>

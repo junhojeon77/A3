@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lego Set Details</title>
+    <link href="/css/main.css" rel="stylesheet">
+    <style>
+        .bubble-button {
+            display: inline-block;
+            background-color: #3182ce; 
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+            transition: transform 0.3s ease;
+        }
+
+        .bubble-button:hover {
+            transform: scale(1.1);
+        }
+        
+    </style>
+</head>
+<body>
+    <% include('partials/navbar', {page: ''}) %>
+
+    <div class="container mx-auto mt-8">
+        <div class="hero p-8 bg-gray-200 mb-8">
+            <h1 class="text-3xl font-bold"><%= set.name %></h1>
+        </div>
+        <div class="text-center mb-8">
+            <p class="text-lg">Theme: <%= set.theme %></p>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="table-auto bg-white shadow-md rounded border-collapse w-full mb-6">
+                <thead class="bg-gray-200">
+                    <tr>
+                        <th class="border p-3">#</th>
+                        <th class="border p-3">Image</th>
+                        <th class="border p-3">Name</th>
+                        <th class="border p-3">Theme</th>
+                        <th class="border p-3">Year</th>
+                        <th class="border p-3">Number of Parts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="border p-3">1</td>
+                        <td class="border p-3"><img src="<%= set.img_url %>" alt="<%= set.name %>" width="100"></td>
+                        <td class="border p-3"><%= set.name %></td>
+                        <td class="border p-3"><%= set.theme %></td>
+                        <td class="border p-3"><%= set.year %></td>
+                        <td class="border p-3"><%= set.num_parts %></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="mb-8">
+            <blockquote id="quote" class="text-center"></blockquote>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                fetch('https://quotable.io/random')
+                    .then(response => response.json())
+                    .then(data => {
+                        const quoteElement = document.getElementById('quote');
+                        quoteElement.innerHTML = `<p>${data.content}</p><footer>- ${data.author}</footer>`;
+                    })
+                    .catch(error => console.error('Error fetching quote:', error));
+            });
+        </script>
+        <div class="text-center">
+            <a href="#" onclick="history.back(); return false;" class="bubble-button">Return</a>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const themeDropdown = document.getElementById('themeDropdown');
+                const themeButton = document.querySelector('.relative');
+    
+                themeButton.addEventListener('click', function () {
+                    themeDropdown.classList.toggle('hidden');
+                });
+    
+                const themes = ["Classic", "Jungle", "Dimension"];
+                const themeList = themes.map(theme => `<li><a href="/lego/sets?theme=${theme}" class="text-white">${theme}</a></li>`).join('');
+                themeDropdown.innerHTML = themeList;
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<div class="navbar bg-base-100">
+    <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-white text-2xl font-bold"><a href="/" class="<%= (page == '/') ? 'active' : '' %>">Lego Collection</a></h1>
+        <ul class="flex space-x-4">
+            <li><a href="/" class="<%= (page == '/') ? 'active' : '' %>">Home</a></li>
+            <li><a href="/lego/sets" class="<%= (page == '/lego/sets') ? 'active' : '' %>">View Collection</a></li> 
+            <li><a href="/about" class="<%= (page == '/about') ? 'active' : '' %>">About</a></li>
+        </ul>
+    </div>
+</div>
